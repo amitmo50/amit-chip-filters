@@ -7,7 +7,9 @@
     (onRemoveSelection)="removeChip($event)"
   >
     <fusion-chip-filter [configuration]="{ id: 1, mode: 'static' }">
-      <div class="fu-chip-content">Chip filter 1: All</div>
+      <div [fusionTooltip]="'hello'" class="fu-chip-content">
+        Chip filter 1: All
+      </div>
       <div class="filter-element">
         <fusion-daterange
           [options]="{
