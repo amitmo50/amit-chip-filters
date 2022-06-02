@@ -1,23 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'fusion-filter',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.css'],
 })
-export class FiltersComponent {
+export class FiltersComponent implements OnInit {
   formControl = new FormControl();
   formControl2 = new FormControl({
-    startDate: new Date(),
-    endDate: new Date(),
+    date: new Date(),
   });
 
   optionsFilter = [
-    { id: 2, displayText: 'Option 2' },
-    { id: 3, displayText: 'Option 3' },
-    { id: 4, displayText: 'Option 4' },
+    { id: 2, displayText: 'Filter 2' },
+    { id: 3, displayText: 'Filter 3' },
+    { id: 4, displayText: 'Filter 4' },
   ];
+  filter = 'Filter 1';
+  filtersContet = [
+    { id: 1, value: '' },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
+    { id: 7 },
+  ];
+
+  ngOnInit() {
+    console.log(this.formControl2.value);
+    this.formControl2.valueChanges
+      .pipe(
+        startWith({
+          date: new Date(),
+        })
+      )
+      .subscribe((val) => {
+        console.log(typeof val.date);
+        const dateValue = val?.date.toString();
+        this.filtersContet[0].value = dateValue;
+      });
+  }
 
   chipChanged($event) {
     console.log($event);

@@ -7,8 +7,8 @@
     (onRemoveSelection)="removeChip($event)"
   >
     <fusion-chip-filter [configuration]="{ id: 1, mode: 'static' }">
-      <div [fusionTooltip]="'hello'" class="fu-chip-content">
-        Chip filter 1: All
+      <div [fusionTooltip]="filtersContet[0].value" class="fu-chip-content">
+        {{ filtersContet[0].value }}
       </div>
       <div class="filter-element">
         <fusion-daterange
@@ -24,20 +24,20 @@
     </fusion-chip-filter>
 
     <fusion-chip-filter [configuration]="{ id: 2, mode: 'dynamic' }">
-      <div class="fu-chip-content">Alert mode 2</div>
+      <div class="fu-chip-content">Filter 2: Active</div>
       <div class="filter-element">
         <fusion-daterange [formControl]="formControl"> </fusion-daterange>
       </div>
     </fusion-chip-filter>
     <fusion-chip-filter [configuration]="{ id: 3, mode: 'dynamic' }">
-      <div class="fu-chip-content">Status 3: Active</div>
+      <div class="fu-chip-content">Filter 3: Active</div>
       <div class="filter-element">
         <fusion-daterange [formControl]="formControl"> </fusion-daterange>
       </div>
     </fusion-chip-filter>
 
     <fusion-chip-filter [configuration]="{ id: 4, mode: 'dynamic' }">
-      <div class="fu-chip-content">Alert mode 4: All</div>
+      <div class="fu-chip-content">Filter 4: Active</div>
       <div class="filter-element">
         <fusion-daterange [formControl]="formControl"> </fusion-daterange>
       </div>
