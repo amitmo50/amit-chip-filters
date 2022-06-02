@@ -47,7 +47,7 @@
     <fusion-chip-filter
       [configuration]="{ id: 5, mode: 'static', close: true }"
     >
-      <div class="fu-chip-content">Status 5: Active</div>
+      <div class="fu-chip-content">{{ filtersContet[4].value }}</div>
       <div class="filter-element">
         <fusion-daterange [formControl]="formControl"> </fusion-daterange>
       </div>
@@ -56,13 +56,13 @@
     <fusion-chip-filter
       [configuration]="{ id: 6, mode: 'static', close: true }"
     >
-      <div class="fu-chip-content">Status 6: Active</div>
+      <div class="fu-chip-content">{{ filtersContet[5].value }}</div>
       <div class="filter-element">
         <fusion-daterange [formControl]="formControl"> </fusion-daterange>
       </div>
     </fusion-chip-filter>
     <fusion-chip-filter [configuration]="{ id: 7, mode: 'static' }">
-      <div class="fu-chip-content">Status 7: Active</div>
+      <div class="fu-chip-content">{{ filtersContet[6].value }}</div>
       <div class="filter-element">
         <fusion-daterange [formControl]="formControl"> </fusion-daterange>
       </div>
