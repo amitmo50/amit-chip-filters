@@ -30,18 +30,15 @@ export class FiltersComponent implements OnInit {
   ];
 
   ngOnInit() {
-    console.log(this.formControl2.value);
     this.formControl2.valueChanges
       .pipe(
         startWith({
           date: new Date(),
         })
       )
-      .subscribe((val) => {
-        console.log(typeof val.date);
-        const dateValue = val?.date.toDateString();
-        this.filtersContet[0].value = dateValue;
-      });
+      .subscribe(
+        (val) => (this.filtersContet[0].value = val?.date.toDateString())
+      );
   }
 
   chipChanged($event) {
