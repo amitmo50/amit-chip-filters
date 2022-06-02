@@ -10,7 +10,11 @@
       <div class="fu-chip-content">Chip filter 1: All</div>
       <div class="filter-element">
         <fusion-daterange
-          [options]="{ calendarAmount: 1, presets: [] }"
+          [options]="{
+            calendarAmount: 1,
+            presets: [],
+            allowFutureSelection: true
+          }"
           [formControl]="formControl2"
         >
         </fusion-daterange>
