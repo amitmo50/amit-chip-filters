@@ -25,20 +25,20 @@
     </fusion-chip-filter>
 
     <fusion-chip-filter [configuration]="{ id: 2, mode: 'dynamic' }">
-      <div class="fu-chip-content">Filter 2: Active</div>
+      <div class="fu-chip-content">{{ filtersContet[1].value }}</div>
       <div class="filter-element">
         <fusion-daterange [formControl]="formControl"> </fusion-daterange>
       </div>
     </fusion-chip-filter>
     <fusion-chip-filter [configuration]="{ id: 3, mode: 'dynamic' }">
-      <div class="fu-chip-content">Filter 3: Active</div>
+      <div class="fu-chip-content">{{ filtersContet[2].value }}</div>
       <div class="filter-element">
         <fusion-daterange [formControl]="formControl"> </fusion-daterange>
       </div>
     </fusion-chip-filter>
 
     <fusion-chip-filter [configuration]="{ id: 4, mode: 'dynamic' }">
-      <div class="fu-chip-content">Filter 4: Active</div>
+      <div class="fu-chip-content">{{ filtersContet[3].value }}</div>
       <div class="filter-element">
         <fusion-daterange [formControl]="formControl"> </fusion-daterange>
       </div>

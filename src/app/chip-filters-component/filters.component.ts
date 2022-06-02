@@ -21,12 +21,12 @@ export class FiltersComponent implements OnInit {
   filter = 'Filter 1';
   filtersContet = [
     { id: 1, value: '' },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
+    { id: 2, value: 'Filter 2: Active' },
+    { id: 3, value: 'Filter 3: Active' },
+    { id: 4, value: 'Filter 4: Active' },
+    { id: 5, value: '' },
+    { id: 6, value: '' },
+    { id: 7, value: '' },
   ];
 
   ngOnInit() {
