@@ -39,7 +39,7 @@ export class FiltersComponent implements OnInit {
       )
       .subscribe((val) => {
         console.log(typeof val.date);
-        const dateValue = val?.date.toString();
+        const dateValue = val?.date.toDateString();
         this.filtersContet[0].value = dateValue;
       });
   }
