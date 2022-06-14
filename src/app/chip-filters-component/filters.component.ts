@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { DropdownOption } from '@ironsource/fusion-ui/components/dropdown-option/entities';
 import { Subject } from 'rxjs';
-import { startWith, takeUntil } from 'rxjs/operators';
+import { MOK_APPLICATIONS } from './data';
 
 @Component({
   selector: 'fusion-filter',
@@ -9,40 +10,37 @@ import { startWith, takeUntil } from 'rxjs/operators';
   styleUrls: ['./filters.component.css'],
 })
 export class FiltersComponent implements OnInit, OnDestroy {
-  formControl = new FormControl();
-  formControl2 = new FormControl({
-    date: new Date(),
+  countries = [
+    { id: 1, displayText: 'US' },
+    { id: 2, displayText: 'AT' },
+  ];
+
+  applicationList: DropdownOption[] = MOK_APPLICATIONS.map((app) => {
+    return {
+      id: app.id,
+      name: app.name,
+      displayText: app.name,
+      icon: app.platform.toLowerCase(),
+      image: app.icon,
+    };
   });
 
-  optionsFilter = [
-    { id: 2, displayText: 'Filter 2' },
-    { id: 3, displayText: 'Filter 3' },
-    { id: 4, displayText: 'Filter 4' },
-  ];
-  filter = 'Filter 1';
-  filtersContet = [
-    { id: 1, value: '', default: 'Filter 1: All' },
-    { id: 2, value: 'Filter 2: Active', default: 'Filter 2: Active' },
-    { id: 3, value: 'Filter 3: Active', default: 'Filter 3: Active' },
+  optionsFilter = [{ id: 4, displayText: 'Filter 4' }];
+
+  filtersContent = [
+    { id: 1, value: 'Filter 1: All', default: 'Filter 1: All' },
     { id: 4, value: 'Filter 4: Active', default: 'Filter 4: Active' },
     { id: 5, value: 'Filter 5: All', default: 'Filter 5: All' },
     { id: 6, value: 'Filter 6: All', default: 'Filter 6: All' },
     { id: 7, value: 'Filter 7: All', default: 'Filter 7: All' },
   ];
-
+  form: FormGroup;
   private onDestroy$ = new Subject<void>();
 
+  constructor(private readonly fb: FormBuilder) {}
+
   ngOnInit() {
-    this.formControl2.valueChanges
-      .pipe(
-        takeUntil(this.onDestroy$),
-        startWith({
-          date: new Date(),
-        })
-      )
-      .subscribe(
-        (val) => (this.filtersContet[0].value = val?.date.toDateString())
-      );
+    this.form = this.generateFormGroup();
   }
 
   ngOnDestroy() {
@@ -50,26 +48,33 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
+  isReachTotalData() {
+    console.log('Data reached limit');
+  }
+
+  isSearchChanged(data: string) {
+    console.log('Search key: ', data);
+  }
+
+  isViewChanged(data: boolean) {
+    console.log('Overlay Open: ', data);
+  }
+
   chipChanged($event) {
     console.log($event);
-    $event.forEach((filter) => {
-      if (filter.id >= 5 && filter.id <= 7) {
-        this.filtersContet[
-          filter?.id - 1
-        ].value = `${filter?.value?.startDate.toDateString()} - ${filter?.value?.endDate.toDateString()}`;
-      }
-    });
   }
 
   removeChip($event) {
     console.log($event);
-    this.filtersContet.forEach((content) => {
-      const isSelected = $event.some((selected) => selected.id === content.id);
-      if (!isSelected && content.id >= 5 && content.id <= 7) {
-        this.filtersContet[content.id - 1].value =
-          this.filtersContet[content.id - 1].default;
-      }
+  }
+
+  private generateFormGroup() {
+    return this.fb.group({
+      date: {},
+      applications: [],
+      range: [],
+      rangeTwo: [],
+      countries: [],
     });
-    this.formControl.reset();
   }
 }
